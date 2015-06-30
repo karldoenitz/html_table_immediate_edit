@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>jquery示例3:可修改的表格</title>
+    <script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="./js/jqueryedit.js"></script>
+</head>
+<body>
+<p onclick="ExportToExcel()">导出</p>
+    <table border="1">
+        <tbody id="pl">
+
+    <tr>
+        <td colspan=4>
+            <center>利润表</center>
+        </td>
+    </tr>
+    <tr>
+        <td  colspan=2>
+            编制单位:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="firm"></span>
+        </td>
+        <td>
+            日期:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="por"></span>
+        </td>
+
+        <td>
+
+            单位: 元
+
+        </td>
+
+    </tr>
+    <tr>
+        <td style="width:45%">
+            项目
+        </td>
+        <td>
+            行次
+        </td>
+
+        <td id="index0">
+
+    <!--        本期金额      -->
+
+        </td>
+
+        <td id="index1">
+
+    <!--        上期金额      -->
+
+        </td>
+
+    </tr>
+    <tr>
+        <td data-key-type="pa100t_op_revenue"><b>营业总收入</b>
+        </td>
+        <td>1</td>
+
+        <td data-tag="field" data-head="pa100t_op_revenue-value1" id="pa100t_op_revenue-0"></td>
+
+        <td data-tag="field" data-head="pa100t_op_revenue-value3" id="pa100t_op_revenue-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa10010_op_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：营业收入</td>
+        <td>2</td>
+
+        <td data-tag="field" data-head="pa10010_op_revu-value1" id="pa10010_op_revu-0" class="edit"></td>
+
+        <td data-tag="field" data-head="pa10010_op_revu-value3" id="pa10010_op_revu-1" class="edit"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa10011_main_op_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：主营业务收入</td>
+        <td>3</td>
+
+        <td data-tag="field" data-head="pa10011_main_op_revu-value1" id="pa10011_main_op_revu-0" class="edit"></td>
+
+        <td data-tag="field" data-head="pa10011_main_op_revu-value3" id="pa10011_main_op_revu-1" class="edit"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa10012_other_op_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他业务收入</td>
+        <td>4</td>
+
+        <td data-tag="field" data-head="pa10012_other_op_revu-value1" id="pa10012_other_op_revu-0" class="edit"></td>
+
+        <td data-tag="field" data-head="pa10012_other_op_revu-value3" id="pa10012_other_op_revu-1" class="edit"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa10030_interest_income">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 利息收入</td>
+        <td>5</td>
+
+        <td data-tag="field" data-head="pa10030_interest_income-value1" id="pa10030_interest_income-0"></td>
+
+        <td data-tag="field" data-head="pa10030_interest_income-value3" id="pa10030_interest_income-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa10050_insurance_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 已赚保费</td>
+        <td>6</td>
+
+        <td data-tag="field" data-head="pa10050_insurance_revu-value1" id="pa10050_insurance_revu-0"></td>
+
+        <td data-tag="field" data-head="pa10050_insurance_revu-value3" id="pa10050_insurance_revu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa10060_mission_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 手续费及佣金收入</td>
+        <td>7</td>
+
+        <td data-tag="field" data-head="pa10060_mission_revu-value1" id="pa10060_mission_revu-0"></td>
+
+        <td data-tag="field" data-head="pa10060_mission_revu-value3" id="pa10060_mission_revu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa200t_op_cost"><b>营业总成本</b>
+        </td>
+        <td>8</td>
+
+        <td data-tag="field" data-head="pa200t_op_cost-value1" id="pa200t_op_cost-0"></td>
+
+        <td data-tag="field" data-head="pa200t_op_cost-value3" id="pa200t_op_cost-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20010_op_cost">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：营业成本</td>
+        <td>9</td>
+
+        <td data-tag="field" data-head="pa20010_op_cost-value1" id="pa20010_op_cost-0"></td>
+
+        <td data-tag="field" data-head="pa20010_op_cost-value3" id="pa20010_op_cost-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20011_main_opcost">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：主营业务成本</td>
+        <td>10</td>
+
+        <td data-tag="field" data-head="pa20011_main_opcost-value1" id="pa20011_main_opcost-0"></td>
+
+        <td data-tag="field" data-head="pa20011_main_opcost-value3" id="pa20011_main_opcost-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20012_other_opcost">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他业务成本</td>
+        <td>11</td>
+
+        <td data-tag="field" data-head="pa20012_other_opcost-value1" id="pa20012_other_opcost-0"></td>
+
+        <td data-tag="field" data-head="pa20012_other_opcost-value3" id="pa20012_other_opcost-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20020_interest_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 利息支出</td>
+        <td>12</td>
+
+        <td data-tag="field" data-head="pa20020_interest_exp-value1" id="pa20020_interest_exp-0"></td>
+
+        <td data-tag="field" data-head="pa20020_interest_exp-value3" id="pa20020_interest_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20030_mission_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 手续费及佣金支出</td>
+        <td>13</td>
+
+        <td data-tag="field" data-head="pa20030_mission_exp-value1" id="pa20030_mission_exp-0"></td>
+
+        <td data-tag="field" data-head="pa20030_mission_exp-value3" id="pa20030_mission_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20040_insurance_refund">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 退保金</td>
+        <td>14</td>
+
+        <td data-tag="field" data-head="pa20040_insurance_refund-value1" id="pa20040_insurance_refund-0"></td>
+
+        <td data-tag="field" data-head="pa20040_insurance_refund-value3" id="pa20040_insurance_refund-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20050_compensation">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 赔付支出净额</td>
+        <td>15</td>
+
+        <td data-tag="field" data-head="pa20050_compensation-value1" id="pa20050_compensation-0"></td>
+
+        <td data-tag="field" data-head="pa20050_compensation-value3" id="pa20050_compensation-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20060_contract_reserve">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提取保险合同准备金净额</td>
+        <td>16</td>
+
+        <td data-tag="field" data-head="pa20060_contract_reserve-value1" id="pa20060_contract_reserve-0"></td>
+
+        <td data-tag="field" data-head="pa20060_contract_reserve-value3" id="pa20060_contract_reserve-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20070_insurebonus_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 保单红利支出</td>
+        <td>17</td>
+
+        <td data-tag="field" data-head="pa20070_insurebonus_exp-value1" id="pa20070_insurebonus_exp-0"></td>
+
+        <td data-tag="field" data-head="pa20070_insurebonus_exp-value3" id="pa20070_insurebonus_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa20080_reinsurance_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 分保费用</td>
+        <td>18</td>
+
+        <td data-tag="field" data-head="pa20080_reinsurance_exp-value1" id="pa20080_reinsurance_exp-0"></td>
+
+        <td data-tag="field" data-head="pa20080_reinsurance_exp-value3" id="pa20080_reinsurance_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa21010_taxadd">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 营业税金及附加</td>
+        <td>19</td>
+
+        <td data-tag="field" data-head="pa21010_taxadd-value1" id="pa21010_taxadd-0"></td>
+
+        <td data-tag="field" data-head="pa21010_taxadd-value3" id="pa21010_taxadd-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa22010_sales_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 销售费用</td>
+        <td>20</td>
+
+        <td data-tag="field" data-head="pa22010_sales_exp-value1" id="pa22010_sales_exp-0"></td>
+
+        <td data-tag="field" data-head="pa22010_sales_exp-value3" id="pa22010_sales_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa22020_admin_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 管理费用</td>
+        <td>21</td>
+
+        <td data-tag="field" data-head="pa22020_admin_exp-value1" id="pa22020_admin_exp-0"></td>
+
+        <td data-tag="field" data-head="pa22020_admin_exp-value3" id="pa22020_admin_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa22030_fin_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 财务费用</td>
+        <td>22</td>
+
+        <td data-tag="field" data-head="pa22030_fin_exp-value1" id="pa22030_fin_exp-0"></td>
+
+        <td data-tag="field" data-head="pa22030_fin_exp-value3" id="pa22030_fin_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa22040_asset_loss">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 资产减值损失</td>
+        <td>23</td>
+
+        <td data-tag="field" data-head="pa22040_asset_loss-value1" id="pa22040_asset_loss-0"></td>
+
+        <td data-tag="field" data-head="pa22040_asset_loss-value3" id="pa22040_asset_loss-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa25010_fairvalue_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 加：公允价值变动收益（损失以“一”号填列）</td>
+        <td>24</td>
+
+        <td data-tag="field" data-head="pa25010_fairvalue_revu-value1" id="pa25010_fairvalue_revu-0"></td>
+
+        <td data-tag="field" data-head="pa25010_fairvalue_revu-value3" id="pa25010_fairvalue_revu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa25020_invest_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 投资收益（损失以“一”号填列）</td>
+        <td>25</td>
+
+        <td data-tag="field" data-head="pa25020_invest_revu-value1" id="pa25020_invest_revu-0"></td>
+
+        <td data-tag="field" data-head="pa25020_invest_revu-value3" id="pa25020_invest_revu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa25021_invest_associate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：对联营企业和合营企业的投资收益</td>
+        <td>26</td>
+
+        <td data-tag="field" data-head="pa25021_invest_associate-value1" id="pa25021_invest_associate-0"></td>
+
+        <td data-tag="field" data-head="pa25021_invest_associate-value3" id="pa25021_invest_associate-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa25030_exchange_loss">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 汇兑收益（损失以“一”号填列）</td>
+        <td>27</td>
+
+        <td data-tag="field" data-head="pa25030_exchange_loss-value1" id="pa25030_exchange_loss-0"></td>
+
+        <td data-tag="field" data-head="pa25030_exchange_loss-value3" id="pa25030_exchange_loss-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa25040_future_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 期货损益</td>
+        <td>28</td>
+
+        <td data-tag="field" data-head="pa25040_future_revu-value1" id="pa25040_future_revu-0"></td>
+
+        <td data-tag="field" data-head="pa25040_future_revu-value3" id="pa25040_future_revu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa25050_trusteeship_revu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 托管损益</td>
+        <td>29</td>
+
+        <td data-tag="field" data-head="pa25050_trusteeship_revu-value1" id="pa25050_trusteeship_revu-0"></td>
+
+        <td data-tag="field" data-head="pa25050_trusteeship_revu-value3" id="pa25050_trusteeship_revu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa30000_op_profit"><b>营业利润（亏损以“一”号填列）</b>
+        </td>
+        <td>30</td>
+
+        <td data-tag="field" data-head="pa30000_op_profit-value1" id="pa30000_op_profit-0"></td>
+
+        <td data-tag="field" data-head="pa30000_op_profit-value3" id="pa30000_op_profit-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa31010_non_oprevu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 加：营业外收入</td>
+        <td>31</td>
+
+        <td data-tag="field" data-head="pa31010_non_oprevu-value1" id="pa31010_non_oprevu-0"></td>
+
+        <td data-tag="field" data-head="pa31010_non_oprevu-value3" id="pa31010_non_oprevu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa31011_noncurta_gain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：非流动资产处置利得</td>
+        <td>32</td>
+
+        <td data-tag="field" data-head="pa31011_noncurta_gain-value1" id="pa31011_noncurta_gain-0"></td>
+
+        <td data-tag="field" data-head="pa31011_noncurta_gain-value3" id="pa31011_noncurta_gain-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa31015_subside">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;政府补助（补贴收入）</td>
+        <td>33</td>
+
+        <td data-tag="field" data-head="pa31015_subside-value1" id="pa31015_subside-0"></td>
+
+        <td data-tag="field" data-head="pa31015_subside-value3" id="pa31015_subside-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa32010_non_opexp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 减：营业外支出</td>
+        <td>34</td>
+
+        <td data-tag="field" data-head="pa32010_non_opexp-value1" id="pa32010_non_opexp-0"></td>
+
+        <td data-tag="field" data-head="pa32010_non_opexp-value3" id="pa32010_non_opexp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa32011_noncurta_loss">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：非流动资产处置净损失</td>
+        <td>35</td>
+
+        <td data-tag="field" data-head="pa32011_noncurta_loss-value1" id="pa32011_noncurta_loss-0"></td>
+
+        <td data-tag="field" data-head="pa32011_noncurta_loss-value3" id="pa32011_noncurta_loss-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa40000_total_profit"><b>利润总额（亏损以“一”号填列）</b>
+        </td>
+        <td>36</td>
+
+        <td data-tag="field" data-head="pa40000_total_profit-value1" id="pa40000_total_profit-0"></td>
+
+        <td data-tag="field" data-head="pa40000_total_profit-value3" id="pa40000_total_profit-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa41010_corporatetax">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 减：所得税费用</td>
+        <td>37</td>
+
+        <td data-tag="field" data-head="pa41010_corporatetax-value1" id="pa41010_corporatetax-0"></td>
+
+        <td data-tag="field" data-head="pa41010_corporatetax-value3" id="pa41010_corporatetax-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa41020_uncertain_invloss">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 未确认投资损失</td>
+        <td>38</td>
+
+        <td data-tag="field" data-head="pa41020_uncertain_invloss-value1" id="pa41020_uncertain_invloss-0"></td>
+
+        <td data-tag="field" data-head="pa41020_uncertain_invloss-value3" id="pa41020_uncertain_invloss-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pa50000_netprofit"><b>净利润（净亏损以“一”号填列）</b>
+        </td>
+        <td>39</td>
+
+        <td data-tag="field" data-head="pa50000_netprofit-value1" id="pa50000_netprofit-0"></td>
+
+        <td data-tag="field" data-head="pa50000_netprofit-value3" id="pa50000_netprofit-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb10010_unmerge_profit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 其中：被合并方在合并前实现的净利润</td>
+        <td>40</td>
+
+        <td data-tag="field" data-head="pb10010_unmerge_profit-value1" id="pb10010_unmerge_profit-0"></td>
+
+        <td data-tag="field" data-head="pb10010_unmerge_profit-value3" id="pb10010_unmerge_profit-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb10020_minority_pl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;少数股东损益</td>
+        <td>41</td>
+
+        <td data-tag="field" data-head="pb10020_minority_pl-value1" id="pb10020_minority_pl-0"></td>
+
+        <td data-tag="field" data-head="pb10020_minority_pl-value3" id="pb10020_minority_pl-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb10030_prof_headquarte">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;归属于母公司所有者的净利润</td>
+        <td>42</td>
+
+        <td data-tag="field" data-head="pb10030_prof_headquarte-value1" id="pb10030_prof_headquarte-0"></td>
+
+        <td data-tag="field" data-head="pb10030_prof_headquarte-value3" id="pb10030_prof_headquarte-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb20000_eps"><b>每股收益</b>
+        </td>
+        <td>43</td>
+
+        <td data-tag="field" data-head="pb20000_eps-value1" id="pb20000_eps-0"></td>
+
+        <td data-tag="field" data-head="pb20000_eps-value3" id="pb20000_eps-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb20010_basic_eps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 基本每股收益</td>
+        <td>44</td>
+
+        <td data-tag="field" data-head="pb20010_basic_eps-value1" id="pb20010_basic_eps-0"></td>
+
+        <td data-tag="field" data-head="pb20010_basic_eps-value3" id="pb20010_basic_eps-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb20020_diluted_eps">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 稀释每股收益</td>
+        <td>45</td>
+
+        <td data-tag="field" data-head="pb20020_diluted_eps-value1" id="pb20020_diluted_eps-0"></td>
+
+        <td data-tag="field" data-head="pb20020_diluted_eps-value3" id="pb20020_diluted_eps-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb30010_other_comprenu"><b>其他综合收益</b>
+        </td>
+        <td>46</td>
+
+        <td data-tag="field" data-head="pb30010_other_comprenu-value1" id="pb30010_other_comprenu-0"></td>
+
+        <td data-tag="field" data-head="pb30010_other_comprenu-value3" id="pb30010_other_comprenu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb30020_total_comprenu"><b>综合收益总额</b>
+        </td>
+        <td>47</td>
+
+        <td data-tag="field" data-head="pb30020_total_comprenu-value1" id="pb30020_total_comprenu-0"></td>
+
+        <td data-tag="field" data-head="pb30020_total_comprenu-value3" id="pb30020_total_comprenu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb30021_tcomprenu_headqu">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 归属于母公司所有者的综合收益总额</td>
+        <td>48</td>
+
+        <td data-tag="field" data-head="pb30021_tcomprenu_headqu-value1" id="pb30021_tcomprenu_headqu-0"></td>
+
+        <td data-tag="field" data-head="pb30021_tcomprenu_headqu-value3" id="pb30021_tcomprenu_headqu-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pb30025_tcomprenu_minor">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 归属于少数股东的综合收益总额</td>
+        <td>49</td>
+
+        <td data-tag="field" data-head="pb30025_tcomprenu_minor-value1" id="pb30025_tcomprenu_minor-0"></td>
+
+        <td data-tag="field" data-head="pb30025_tcomprenu_minor-value3" id="pb30025_tcomprenu_minor-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd10010_undistr_ybegin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 加：年初未分配利润</td>
+        <td>50</td>
+
+        <td data-tag="field" data-head="pd10010_undistr_ybegin-value1" id="pd10010_undistr_ybegin-0"></td>
+
+        <td data-tag="field" data-head="pd10010_undistr_ybegin-value3" id="pd10010_undistr_ybegin-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd10020_ot_transferin">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其他转入</td>
+        <td>51</td>
+
+        <td data-tag="field" data-head="pd10020_ot_transferin-value1" id="pd10020_ot_transferin-0"></td>
+
+        <td data-tag="field" data-head="pd10020_ot_transferin-value3" id="pd10020_ot_transferin-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd20000_prof_todistr"><b>可供分配的利润</b>
+        </td>
+        <td>52</td>
+
+        <td data-tag="field" data-head="pd20000_prof_todistr-value1" id="pd20000_prof_todistr-0"></td>
+
+        <td data-tag="field" data-head="pd20000_prof_todistr-value3" id="pd20000_prof_todistr-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd21010_surplusreserve_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;减：提取法定盈余公积</td>
+        <td>53</td>
+
+        <td data-tag="field" data-head="pd21010_surplusreserve_exp-value1" id="pd21010_surplusreserve_exp-0"></td>
+
+        <td data-tag="field" data-head="pd21010_surplusreserve_exp-value3" id="pd21010_surplusreserve_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd21020_pubwelfare_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提取法定公益金</td>
+        <td>54</td>
+
+        <td data-tag="field" data-head="pd21020_pubwelfare_exp-value1" id="pd21020_pubwelfare_exp-0"></td>
+
+        <td data-tag="field" data-head="pd21020_pubwelfare_exp-value3" id="pd21020_pubwelfare_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd21030_welfare_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提取职工奖励及福利基金</td>
+        <td>55</td>
+
+        <td data-tag="field" data-head="pd21030_welfare_exp-value1" id="pd21030_welfare_exp-0"></td>
+
+        <td data-tag="field" data-head="pd21030_welfare_exp-value3" id="pd21030_welfare_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd21040_reserve_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提取储备基金</td>
+        <td>56</td>
+
+        <td data-tag="field" data-head="pd21040_reserve_exp-value1" id="pd21040_reserve_exp-0"></td>
+
+        <td data-tag="field" data-head="pd21040_reserve_exp-value3" id="pd21040_reserve_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd21050_developfund_exp">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提取企业发展基金</td>
+        <td>57</td>
+
+        <td data-tag="field" data-head="pd21050_developfund_exp-value1" id="pd21050_developfund_exp-0"></td>
+
+        <td data-tag="field" data-head="pd21050_developfund_exp-value3" id="pd21050_developfund_exp-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd21060_profit_toinvest">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 利润归还投资</td>
+        <td>58</td>
+
+        <td data-tag="field" data-head="pd21060_profit_toinvest-value1" id="pd21060_profit_toinvest-0"></td>
+
+        <td data-tag="field" data-head="pd21060_profit_toinvest-value3" id="pd21060_profit_toinvest-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd30000_shareholder_prof"><b>可供投资者分配的利</b>
+        </td>
+        <td>59</td>
+
+        <td data-tag="field" data-head="pd30000_shareholder_prof-value1" id="pd30000_shareholder_prof-0"></td>
+
+        <td data-tag="field" data-head="pd30000_shareholder_prof-value3" id="pd30000_shareholder_prof-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd31010_prefer_dividend">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;减：应付优先股股利</td>
+        <td>60</td>
+
+        <td data-tag="field" data-head="pd31010_prefer_dividend-value1" id="pd31010_prefer_dividend-0"></td>
+
+        <td data-tag="field" data-head="pd31010_prefer_dividend-value3" id="pd31010_prefer_dividend-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd31020_option_sureserve">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 提取任意盈余公积</td>
+        <td>61</td>
+
+        <td data-tag="field" data-head="pd31020_option_sureserve-value1" id="pd31020_option_sureserve-0"></td>
+
+        <td data-tag="field" data-head="pd31020_option_sureserve-value3" id="pd31020_option_sureserve-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd31030_dividend_pay">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 应付普通股股利</td>
+        <td>62</td>
+
+        <td data-tag="field" data-head="pd31030_dividend_pay-value1" id="pd31030_dividend_pay-0"></td>
+
+        <td data-tag="field" data-head="pd31030_dividend_pay-value3" id="pd31030_dividend_pay-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd32010_dividend_toshare">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 转作资本（或股本）的普通股股利</td>
+        <td>63</td>
+
+        <td data-tag="field" data-head="pd32010_dividend_toshare-value1" id="pd32010_dividend_toshare-0"></td>
+
+        <td data-tag="field" data-head="pd32010_dividend_toshare-value3" id="pd32010_dividend_toshare-1"></td>
+
+    </tr>
+
+
+
+    <tr>
+        <td data-key-type="pd40000_undistr_prof"><b>未分配利润</b>
+        </td>
+        <td>64</td>
+
+        <td data-tag="field" data-head="pd40000_undistr_prof-value1" id="pd40000_undistr_prof-0"></td>
+
+        <td data-tag="field" data-head="pd40000_undistr_prof-value3" id="pd40000_undistr_prof-1"></td>
+
+    </tr>
+
+
+
+    </tbody>
+    </table>
+</body>
+</html>
